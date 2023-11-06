@@ -1,3 +1,4 @@
+import os
 import time
 from django.test import LiveServerTestCase
 from selenium import webdriver
@@ -11,6 +12,9 @@ class NewVisitorTest(LiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Chrome()
+        staging_server = os.environ.get("STAGING_SERVER")
+        if staging_server:
+            self.live_server_url = staging_server
 
     def tearDown(self):
         self.browser.quit()
@@ -28,6 +32,16 @@ class NewVisitorTest(LiveServerTestCase):
                 if time.time() - start_time > MAX_WAIT:
                     raise e
                 time.sleep(0.5)
+
+    def test_layout_styling(self):
+
+        self.browser.get(self.live_server_url+"/lists/")
+        self.browser.set_window_size(1024,720)
+
+        inputbox = self.browser.find_element(By.ID, "id_new_item")
+        self.assertAlmostEquals(inputbox.location['x']+ inputbox.size['width']/2,
+                                512,
+                                delta = 10)
 
 
     def test_can_start_a_list_for_one_user(self):
