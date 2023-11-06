@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure---a)sy-5&ho8^d%1)y5ue+x55kp1@)&$i+2k&^b65srv=)pqv@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["5.42.78.110", "localhost"]
+ALLOWED_HOSTS = ["5.42.78.110", "localhost",'http://lovtsevdenisdev.ru']
 
 
 # Application definition
@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+CSRF_TRUSTED_ORIGINS = ['http://lovtsevdenisdev.ru','http://*.127.0.0.1']
 ROOT_URLCONF = 'superlists.urls'
 
 TEMPLATES = [
