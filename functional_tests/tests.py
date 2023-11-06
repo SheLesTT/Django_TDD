@@ -12,9 +12,9 @@ class NewVisitorTest(LiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Chrome()
-        staging_server = os.environ.get("STAGING_SERVER")
-        if staging_server:
-            self.live_server_url = staging_server
+        # staging_server = os.environ.get("STAGING_SERVER")
+        # if staging_server:
+        self.live_server_url = "http://lovtsevdenisdev.ru"
 
     def tearDown(self):
         self.browser.quit()
